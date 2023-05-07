@@ -78,7 +78,17 @@ GROUP BY f.title
 ORDER BY 2 DESC
 LIMIT 1;
 
-/* Cuando se usan mútiples cláusulas JOIN, se debe cuidar el orden en que se unen las tablas. Ya que la
+/*ERRONEO
+
+SELECT f.title, COUNT(r.rental_id) AS number_of_rentals
+FROM film AS f
+JOIN rental AS r ON i.inventory_id = r.inventory_id
+JOIN inventory AS i ON f.film_id = i.film_id
+GROUP BY f.title
+ORDER BY 2 DESC
+LIMIT 1;
+
+Cuando se usan mútiples cláusulas JOIN, se debe cuidar el orden en que se unen las tablas. Ya que la
 clásula JOIN toma dos tablas y crea una nueva tabla temporal que conbiba las filas de ambas tablas 
 basándose en la condición de unión especificada. Luego, la siguiente cláusula JOIN se une a esta tabla
 temporal, y así sucecivamente. 
